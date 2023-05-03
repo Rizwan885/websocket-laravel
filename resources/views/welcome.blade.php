@@ -19,6 +19,7 @@
                 font-family: 'Nunito';
             }
         </style>
+        <script src="{{asset('js/app.js')}}"></script>
     </head>
     <body class="antialiased">
         <div class="relative flex items-top justify-center min-h-screen bg-gray-100 dark:bg-gray-900 sm:items-center sm:pt-0">
@@ -128,5 +129,17 @@
                 </div>
             </div>
         </div>
+
+        <script>
+            // Echo.private('one-to-one').listen('PrivateMessage',(data)=>{
+            //     console.log(data);
+            // });
+            // Echo.join('presence').here((user)=>{
+            //     console.log(user);
+            // }).listen('PresenceMessage',(data)=>{
+            //     console.log(data);
+            // });
+           
+        </script>
     </body>
 </html>
