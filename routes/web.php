@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ChatController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,6 +17,12 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
-Route::get('/trade', function () {
-    return view('trade');
-});
+
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth'])->name('dashboard');
+
+
+Route::get('/chat',[ChatController::class,'loadchatView']);
+Route::post('/broadcast-message',[ChatController::class,'broadcastMessage'])->name('broadcastMessage');
+require __DIR__.'/auth.php';
