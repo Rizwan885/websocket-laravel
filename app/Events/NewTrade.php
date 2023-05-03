@@ -39,7 +39,7 @@ class NewTrade implements ShouldBroadcast
     }
 
     public function broadcastWith(){
-        $this->time=Carbon::now()->tz('Asia/Karachi')->format('Y-md-d H:i:s');
+        $this->time=Carbon::now()->tz('Asia/Karachi')->format('Y-m-d H:i:s');
 
         return[
             'message'=>$this->message,
