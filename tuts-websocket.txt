@@ -1,5 +1,10 @@
 
 1. composer require beyondcode/laravel-websockets
+npm install and npm run dev
+ "dev": "npm run development",
+"development": "cross-env NODE_ENV=development node_modules/webpack/bin/webpack.js --progress --config=node_modules/laravel-mix/setup/webpack.config.js",
+
+
 
 2. php artisan vendor:publish --provider="BeyondCode\LaravelWebSockets\WebSocketsServiceProvider" --tag="migrations"
 
@@ -8,3 +13,76 @@
 4. php artisan vendor:publish --provider="BeyondCode\LaravelWebSockets\WebSocketsServiceProvider" --tag="config"
 
 5. composer require pusher/pusher-php-server "~3.0"
+
+6. In boradcasting.php.php->connection
+for development
+'host'=>127.0.0.1
+'port'=>6001,
+'schema'=>'http'
+
+for live
+useTLC-> encrypted=>true
+host,port
+
+7. In ENV  
+Broacast Driver: pusher
+pusher configurations
+
+8. In websockets.php  add port
+
+9. In bootstrap.js
+uncomment Echo and add 
+wsHOst
+wsPort
+forceTLC=>false
+
+10. 
+Private Channel:
+In ruutes/channels.php 
+
+Broadcast::channel('cahnnel-name',function($user){
+    return !is_null($user)
+})
+
+Presence Channel:
+In ruutes/channels.php 
+
+Broadcast::channel('cahnnel-name',function($user){
+    return $user
+})
+
+
+11. In view
+Public
+Echo.channel('channel-name').listner('EventName',(data)=>{
+console.log(data);
+});
+
+Private
+Echo.private('channel-name').listner('EventName',(data)=>{
+console.log(data);
+});
+
+Presence
+Echo.join('channel-name').here((user)=>{
+    console.log(user);
+}).joining((user)=>{
+    console.log(user.name);
+}).leaving((user)=>{
+    console.log(user.name);
+}).listner('EventName',(data)=>{
+console.log(data);
+});
+
+
+12. We can use broadcaseWith or broadcastAs method for custom name. 
+
+
+Run php artisan websockets:server
+php artisan server
+in url add naee. 
+
+
+
+
+
